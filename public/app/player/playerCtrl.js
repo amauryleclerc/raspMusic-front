@@ -20,7 +20,7 @@ app.controller('PlayerCtrl', ['Player', 'PlayerService', '$timeout', function (P
 		Player.previous();
 	}
 	this.changeTime = function () {
-		Player.changeTime(this.time.percentage * 10 * this.time.length);
+		Player.changeTime(this.time.percentage * 10 * this.music.length);
 	}
 
 	PlayerService.onPlay((music) => {
