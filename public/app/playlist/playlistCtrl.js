@@ -1,30 +1,31 @@
 'use strict';
 
 app.controller('PlaylistCtrl', [ 'Player', 'PlayerService', function(Player, PlayerService) {
-	this.music = PlayerService.currentMusic;
-	this.playlist = PlayerService.playlist;
-	this.state  = PlayerService.state;
-
-	this.play = function() {
-		Player.play();
-	}
-	this.pause = function() {
-		Player.pause();
-	}
-	this.stop = function() {
-		Player.stop();
-	}
-	this.next = function() {
-		Player.next();
-	}
-	this.previous = function() {
-		Player.previous();
-	}
+	this.music = null;
+	this.playlist = [];
+	this.time = null;
 	this.remove = function(music) {
 		Player.remove(music);
 	}
 	this.checkActive = function(music) {
-		return music.position===this.music.position;
+		if(this.music){
+			return music.position===this.music.position;
+		}
+		return false;
 	}
-		
+	PlayerService.onPlay((music)=>{
+		this.music = music;
+	});
+	PlayerService.onMusicChange((music)=>{
+		this.music = music;
+	});
+	PlayerService.onPlayListChange((playlist)=>{
+		this.playlist = playlist;
+	});
+	/*PlayerService.onRemove((music)=>{
+		this.playlist = this.playlist.filter((music)=> music.position !== this.music.position);
+	});*/
+	PlayerService.onTimeChange((time)=>{
+		this.time = time;
+	});
 } ]);
