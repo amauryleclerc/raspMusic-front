@@ -10,10 +10,10 @@ app.factory('Player', [ '$resource', function($resource) {
 			method : 'POST', url:'http://leclerc.hd.free.fr:80/api/player/stop'
 		},
 		'add' : {
-			method : 'PUT', url:'http://leclerc.hd.free.fr:80/api/player/playlist/add'
+			method : 'PUT', url:'http://leclerc.hd.free.fr:80/api/player/add'
 		},
 		'remove' : {
-			method : 'PUT', url:'http://leclerc.hd.free.fr:80/api/player/playlist/remove'
+			method : 'PUT', url:'http://leclerc.hd.free.fr:80/api/player/remove'
 		},
 		'next' : {
 			method : 'POST', url:'http://leclerc.hd.free.fr:80/api/player/next'
@@ -22,7 +22,7 @@ app.factory('Player', [ '$resource', function($resource) {
 			method : 'POST', url:'http://leclerc.hd.free.fr:80/api/player/previous'
 		},
 		'getCurrent' : {
-			method : 'GET', url:'http://leclerc.hd.free.fr:80/api/player/playlist/current'
+			method : 'GET', url:'http://leclerc.hd.free.fr:80/api/player/current'
 		},
 		'getState' : {
 			method : 'GET', url:'http://leclerc.hd.free.fr:80/api/player/state'
