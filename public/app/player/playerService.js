@@ -41,7 +41,7 @@ app
             Player.getState(stateChange);
 
 
-            $stomp.connect('http://leclerc.hd.free.fr:80/websocket').then(function (frame) {
+            $stomp.connect('http://localhost:8080/websocket').then(function (frame) {
                 var onPlay = $stomp.subscribe('/player/play', function (data, headers, res) {
                     play(data);
                     stateChange({ action: "PLAY" });

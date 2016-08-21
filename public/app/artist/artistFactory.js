@@ -1,7 +1,7 @@
 app.factory('Artist', [ '$resource', function($resource) {
 	return $resource('/api/artist', null,  {
 		'getMusics' : {
-			method : 'GET', url:'http://leclerc.hd.free.fr:80/api/artist/:artistName/musics', isArray:true
+			method : 'GET', url:'http://localhost:8080/api/artist/:artistName/musics', isArray:true
 		}
 		
 	});

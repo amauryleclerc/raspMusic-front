@@ -1,3 +1,3 @@
 app.factory('Artists', [ '$resource', function($resource) {
-	return $resource('http://leclerc.hd.free.fr:80/api/artists', null, null);
+	return $resource('http://localhost:8080/api/artists', null, null);
 } ]);
