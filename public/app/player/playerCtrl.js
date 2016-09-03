@@ -3,6 +3,9 @@ angular.module('raspMusicApp').controller('PlayerCtrl', ['Player', 'PlayerServic
 	this.music = null;
 	this.state = null;
 	this.time = null;
+	PlayerService.getCurrent((music)=>{
+		this.music = music;
+	})
 	this.play = function () {
 		Player.play();
 	}

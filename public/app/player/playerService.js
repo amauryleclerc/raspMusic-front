@@ -14,6 +14,17 @@ angular.module('raspMusicApp').service(
             var onAddListeners = [];
             var onRemoveListeners = [];
             var onPlayListChangeListeners = [];
+            var mapMedia = (media) => {
+                console.log(media);
+                if (!(typeof media.position === 'undefined')) {
+                    media.music.position = media.position;
+                }
+                if (!(typeof media.music === 'undefined')) {
+                    return media.music;
+                }
+                return media;
+            };
+
             var play = (music) => {
                 $timeout(onPlayListeners.forEach((listener) => listener(music)));
             }
@@ -34,16 +45,19 @@ angular.module('raspMusicApp').service(
             }
             var playlistChange = () => {
                 Player.getPlaylist(function (data) {
-                    $timeout(onPlayListChangeListeners.forEach((listener) => listener(data)));
+                    let musics = data.map(mapMedia);
+                    $timeout(onPlayListChangeListeners.forEach((listener) => listener(musics)));
                 });
             }
-            Player.getCurrent(play);
+            Player.getCurrent((data) => {
+                musicChange(mapMedia(data));
+            });
             Player.getState(stateChange);
 
 
             $stomp.connect(`http://${BASE_URL}/websocket`).then(function (frame) {
                 var onPlay = $stomp.subscribe('/player/play', function (data, headers, res) {
-                    play(data);
+                    play(mapMedia(data));
                     stateChange({ action: "PLAY" });
                 });
                 var onPause = $stomp.subscribe('/player/pause', function (data, headers, res) {
@@ -53,14 +67,14 @@ angular.module('raspMusicApp').service(
                     stateChange({ action: "STOP" });
                 });
                 var onChange = $stomp.subscribe('/player/change', function (data, headers, res) {
-                    musicChange(data);
+                    musicChange(mapMedia(data));
                 });
                 var onAdd = $stomp.subscribe('/player/add', function (data, headers, res) {
-                    add(data);
+                    add(mapMedia(data));
                     playlistChange();
                 });
                 var onRemove = $stomp.subscribe('/player/remove', function (data, headers, res) {
-                    remove(data);
+                    remove(mapMedia(data));
                     playlistChange();
                 });
                 var onTimeChange = $stomp.subscribe('/player/timechange', function (data, headers, res) {
@@ -69,6 +83,11 @@ angular.module('raspMusicApp').service(
 
             });
             var service = {};
+            service.getCurrent = function (callback) {
+                Player.getCurrent((data) => {
+                    callback(mapMedia(data));
+                });
+            }
             service.onPlay = function (callback) {
                 onPlayListeners.push(callback);
             }

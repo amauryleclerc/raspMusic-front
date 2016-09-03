@@ -1,12 +1,16 @@
 "use strict";
 angular.module('raspMusicApp').controller('PlaylistCtrl', ['Player', 'PlayerService', function (Player, PlayerService) {
 	this.music = null;
+	 PlayerService.getCurrent((music) =>{
+		 this.music = music;
+	 })
+
 	this.playlist = [];
 	this.time = null;
-	this.remove = function (music) {
+	this.remove = (music) =>{
 		Player.remove(music);
 	}
-	this.checkActive = function (music) {
+	this.checkActive =  (music) =>{
 		if (this.music) {
 			return music.position === this.music.position;
 		}
