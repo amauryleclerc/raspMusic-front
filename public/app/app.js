@@ -2,8 +2,6 @@
 
 angular.module('raspMusicApp', ['ui.bootstrap', 'ngResource', 'ngStomp', 'ui.router']);
 
-angular.module('raspMusicApp').constant('_', _);
-
 angular.module('raspMusicApp').config(function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/playlist");
