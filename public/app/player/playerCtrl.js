@@ -19,7 +19,7 @@ angular.module('raspMusicApp').controller('PlayerCtrl', ['Player', 'PlayerServic
 		Player.previous();
 	}
 	this.changeTime = function () {
-		Player.changeTime((this.time.percentage *  this.time.length)/100);
+		Player.changeTime((this.time.percentage * this.time.length) / 100);
 	}
 
 	PlayerService.onPlay((music) => {
@@ -32,6 +32,6 @@ angular.module('raspMusicApp').controller('PlayerCtrl', ['Player', 'PlayerServic
 		this.music = music;
 	});
 	PlayerService.onTimeChange((time) => {
- 		this.time = time;
+		this.time = time;
 	});
 }]);

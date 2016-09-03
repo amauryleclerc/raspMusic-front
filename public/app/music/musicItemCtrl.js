@@ -1,20 +1,20 @@
 "use strict";
-angular.module('raspMusicApp').directive('musicItem', function() {
+angular.module('raspMusicApp').directive('musicItem', function () {
 
 	return {
-		restrict : 'EA',
-		transclude : false,
+		restrict: 'EA',
+		transclude: false,
 		// replace : true,
-		scope : {
-			music : '=',
+		scope: {
+			music: '=',
 			isPlaylist: '=',
 			isCurrent: '=',
-			add : '&',
-			remove : '&'
-				
+			add: '&',
+			remove: '&'
+
 		},
-		controller : function($scope) {
+		controller: function ($scope) {
 		},
-		templateUrl : 'app/music/music-item.html'
+		templateUrl: 'app/music/music-item.html'
 	};
 });

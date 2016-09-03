@@ -1,14 +1,10 @@
-
 <div>
 
 	<div class="input-group stylish-input-group">
-		<input type="text" class="form-control"
-			placeholder="Recherche Youtube" ng-model="ytSearchCtrl.query"
-			ng-change="ytSearchCtrl.search()"> <span
-			class="input-group-addon">
+		<input type="text" class="form-control" placeholder="Recherche Youtube" ng-model="ytSearchCtrl.query" ng-change="ytSearchCtrl.search()">		<span class="input-group-addon">
 			<button type="submit" ng-click="ytSearchCtrl.search()">
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-			</button>
+		</button>
 		</span>
 	</div>
 	<br>
@@ -17,16 +13,15 @@
 			<span class="pull-right">
 				<button class="btn" ng-click="ytSearchCtrl.add(video)">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</button>
-		</span>
+			</button>
+			</span>
 
 			<div ng-if="video.snippet.thumbnails.default.url">
-				<img class="image" alt="{{video.snippet.title}}"
-					ng-src="{{video.snippet.thumbnails.default.url}}" />
+				<img class="image" alt="{{video.snippet.title}}" ng-src="{{video.snippet.thumbnails.default.url}}" />
 			</div>
 
 			<div class="title">
-				<h4  class="list-group-item-heading" >{{video.snippet.title}}</h4>
+				<h4 class="list-group-item-heading">{{video.snippet.title}}</h4>
 				<p class="list-group-item-text">{{video.snippet.channelTitle}}</p>
 				<p>{{video.id.videoId}}</p>
 			</div>

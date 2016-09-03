@@ -11,16 +11,16 @@ angular.module('raspMusicApp').controller('YtSearchCtrl', ['$scope', 'Yt', 'Play
 			q: that.query,
 			key: "AIzaSyBuOzo_bwsr4JP0U993vNhJ9mKH6dfH9Ks",
 			//videoEmbeddable:"true",
-			type:"video",
-		//	videoSyndicated:"true",
-			videoLicense:"creativeCommon"
-		
+			type: "video",
+			//	videoSyndicated:"true",
+			videoLicense: "creativeCommon"
+
 		}
 		Yt.search(search, function (data) {
 			that.videos = data.items.filter(function (video) {
 				return video.id.kind == "youtube#video";
 			});
-		//	console.log(that.videos);
+			//	console.log(that.videos);
 		});
 	}
 	this.add = function (video) {
