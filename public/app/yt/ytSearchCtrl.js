@@ -1,6 +1,5 @@
-'use strict';
-
-app.controller('YtSearchCtrl', ['$scope', 'Yt', 'Player', function ($scope, Yt, Player) {
+"use strict";
+angular.module('raspMusicApp').controller('YtSearchCtrl', ['$scope', 'Yt', 'Player', function ($scope, Yt, Player) {
 	this.query = "";
 	this.videos = [];
 	var that = this;

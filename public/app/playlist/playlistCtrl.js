@@ -1,6 +1,5 @@
-'use strict';
-
-app.controller('PlaylistCtrl', [ 'Player', 'PlayerService', function(Player, PlayerService) {
+"use strict";
+angular.module('raspMusicApp').controller('PlaylistCtrl', [ 'Player', 'PlayerService', function(Player, PlayerService) {
 	this.music = null;
 	this.playlist = [];
 	this.time = null;

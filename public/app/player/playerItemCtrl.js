@@ -1,6 +1,5 @@
-
-'use strict';
-app.directive('playerItem', function() {
+"use strict";
+angular.module('raspMusicApp').directive('playerItem', function() {
 return {
 restrict : 'EA',
 controller : 'PlayerCtrl',

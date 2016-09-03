@@ -1,11 +1,11 @@
-app
-    .service(
+"use strict";
+angular.module('raspMusicApp').service(
 				'PlayerService',
 				[
         'Player',
         '$timeout',
-        '$stomp',
-        function (Player, $timeout, $stomp) {
+        '$stomp', 'BASE_URL',
+        function (Player, $timeout, $stomp, BASE_URL) {
 
             var onPlayListeners = [];
             var onStateChangeListeners = [];
@@ -41,7 +41,7 @@ app
             Player.getState(stateChange);
 
 
-            $stomp.connect('http://leclerc.hd.free.fr:80/websocket').then(function (frame) {
+            $stomp.connect(`http://${BASE_URL}/websocket`).then(function (frame) {
                 var onPlay = $stomp.subscribe('/player/play', function (data, headers, res) {
                     play(data);
                     stateChange({ action: "PLAY" });

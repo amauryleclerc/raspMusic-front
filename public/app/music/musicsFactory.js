@@ -1,3 +1,4 @@
-app.factory('Musics', [ '$resource', function($resource) {
-	return $resource('http://leclerc.hd.free.fr:80/api/musics', null, null);
+"use strict";
+angular.module('raspMusicApp').factory('Musics', [ '$resource', 'BASE_URL', function($resource,BASE_URL) {
+	return $resource(`http://${BASE_URL}/api/musics`, null, null);
 } ]);
