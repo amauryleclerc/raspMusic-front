@@ -15,13 +15,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.3",
+    "angular": "^1.5.8",
     "bootstrap-css-only": "^3.3.6",
-    "angular-ui-router": "^0.2.18",
-    "angular-resource": "^1.5.3",
-    "angular-bootstrap": "^1.2.5",
-    "ngGAPI": "https://github.com/christiansmith/ngGAPI.git",
-    "ng-websocket": "~0.2.1",
+    "angular-ui-router": "^1.0.0-beta.1",
+    "angular-resource": "^1.5.8",
+    "angular-bootstrap": "^2.1.3",
     "ng-stomp": "^0.2.0"
   }
 }

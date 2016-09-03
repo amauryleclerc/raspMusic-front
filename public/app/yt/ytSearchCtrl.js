@@ -20,7 +20,7 @@ angular.module('raspMusicApp').controller('YtSearchCtrl', ['$scope', 'Yt', 'Play
 			that.videos = data.items.filter(function (video) {
 				return video.id.kind == "youtube#video";
 			});
-			console.log(that.videos);
+		//	console.log(that.videos);
 		});
 	}
 	this.add = function (video) {
