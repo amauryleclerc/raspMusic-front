@@ -3,7 +3,7 @@ angular.module('raspMusicApp').controller('PlayerCtrl', ['Player', 'PlayerServic
 	this.music = null;
 	this.state = null;
 	this.time = null;
-	PlayerService.getCurrent((music)=>{
+	PlayerService.getCurrent((music) => {
 		this.music = music;
 	})
 	this.play = function () {
@@ -27,6 +27,11 @@ angular.module('raspMusicApp').controller('PlayerCtrl', ['Player', 'PlayerServic
 
 	PlayerService.onPlay((music) => {
 		this.music = music;
+	});
+	PlayerService.onAdd((music) => {
+		if (this.music == null) {
+			this.music = music;
+		}
 	});
 	PlayerService.onStateChange((state) => {
 		this.state = state;
