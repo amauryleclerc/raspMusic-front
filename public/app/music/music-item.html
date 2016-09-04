@@ -10,10 +10,11 @@
 	<img class="cover-little image" ng-src="{{music.cover}}" ng-if="music.cover" alt="cover">
 </div>
 
-
-<h4 class="list-group-item-heading">
-	{{music.artist.name}}<span ng-if="music.artist.name != ''"> - </span>{{music.title}}
-</h4>
-<p class="list-group-item-text">{{music.album.name}}</p>
-<p class="list-group-item-text">{{music.duration}}</p>
-<p class="list-group-item-text">&nbsp</p>
+<div>
+	<h4 class="list-group-item-heading">
+		{{music.artist.name}}<span ng-if="music.artist.name != ''"> - </span>{{music.title}}
+	</h4>
+	<p class="list-group-item-text">{{music.album.name}}</p>
+	<p class="list-group-item-text">{{music.duration}}</p>
+	<p class="list-group-item-text">&nbsp</p>
+</div>

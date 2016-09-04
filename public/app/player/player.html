@@ -24,10 +24,9 @@
 		<p class="list-group-item-text">{{playerCtrl.music.duration}}</p>
 		<div class="progress" style="position: relative;">
 
-			<div class="progress-bar" role="progressbar" aria-valuenow="playerCtrl.time.percentage" aria-valuemin="0" aria-valuemax="100"
-				style="width: {{playerCtrl.time.percentage}}%;">
-				<span class="sr-only">{{playerCtrl.time.percentage}}% Complete</span>
-			</div>
+			<uib-progressbar  value="playerCtrl.time.percentage" min="0" max="100"
+				 animate="false" >
+			</uib-progressbar>
 
 			<input ng-if="playerCtrl.time.currentTime" min="0" max="100" step="0.1" value="40" type="range" style="position: absolute; top: 1px"
 				ng-model="playerCtrl.time.percentage" ng-mouseup="playerCtrl.changeTime()">
