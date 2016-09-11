@@ -8,7 +8,7 @@ angular.module('raspMusicApp').controller('PlaylistCtrl', ['Player', 'PlayerServ
 	this.playlist = [];
 	this.time = null;
 	this.remove = (music) =>{
-		Player.remove(music);
+		Player.remove({id:music.id});
 	}
 	this.checkActive =  (music) =>{
 		if (this.music) {
@@ -25,9 +25,7 @@ angular.module('raspMusicApp').controller('PlaylistCtrl', ['Player', 'PlayerServ
 	PlayerService.onPlayListChange((playlist) => {
 		this.playlist = playlist;
 	});
-	/*PlayerService.onRemove((music)=>{
-		this.playlist = this.playlist.filter((music)=> music.position !== this.music.position);
-	});*/
+
 	PlayerService.onTimeChange((time) => {
 		this.time = time;
 	});

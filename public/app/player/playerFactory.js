@@ -11,10 +11,10 @@ angular.module('raspMusicApp').factory('Player', ['$resource', 'BASE_URL', funct
 			method: 'POST', url: `http://${BASE_URL}/api/player/stop`
 		},
 		'add': {
-			method: 'PUT', url: `http://${BASE_URL}/api/player/add`
+			method: 'PUT', url: `http://${BASE_URL}/api/player`
 		},
 		'remove': {
-			method: 'PUT', url: `http://${BASE_URL}/api/player/remove`
+			method: 'DELETE', url: `http://${BASE_URL}/api/player/:id`
 		},
 		'next': {
 			method: 'POST', url: `http://${BASE_URL}/api/player/next`

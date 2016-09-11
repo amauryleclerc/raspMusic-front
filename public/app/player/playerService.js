@@ -15,11 +15,9 @@ angular.module('raspMusicApp').service(
             var onRemoveListeners = [];
             var onPlayListChangeListeners = [];
             var mapMedia = (media) => {
-                console.log(media);
-                if (!(typeof media.position === 'undefined')) {
+                if (!(typeof media.position === 'undefined') && !(typeof media.music === 'undefined')) {
                     media.music.position = media.position;
-                }
-                if (!(typeof media.music === 'undefined')) {
+                    media.music.id = media.id;
                     return media.music;
                 }
                 return media;
@@ -60,32 +58,23 @@ angular.module('raspMusicApp').service(
             $stomp.connect(`http://${BASE_URL}/websocket`).then(function (frame) {
                 var onPlay = $stomp.subscribe('/player/play', function (data, headers, res) {
                     play(mapMedia(data));
-                    console.log("play")
                     stateChange({ action: "PLAY" });
                 });
                 var onPause = $stomp.subscribe('/player/pause', function (data, headers, res) {
-                     console.log("pause")
                     stateChange({ action: "PAUSE" });
                 });
                 var onStop = $stomp.subscribe('/player/stop', function (data, headers, res) {
-                     console.log("stop")
                     stateChange({ action: "STOP" });
                 });
                 var onChange = $stomp.subscribe('/player/change', function (data, headers, res) {
                     musicChange(mapMedia(data));
                 });
-                var onAdd = $stomp.subscribe('/player/add', function (data, headers, res) {
-                    add(mapMedia(data));
-                    playlistChange();
-                });
-                var onRemove = $stomp.subscribe('/player/remove', function (data, headers, res) {
-                    remove(mapMedia(data));
-                    playlistChange();
-                });
                 var onTimeChange = $stomp.subscribe('/player/timechange', function (data, headers, res) {
                     timeChange(data);
                 });
-
+                var onPlaylistChange = $stomp.subscribe('/player/playlist', function (data, headers, res) {
+                    playlistChange();
+                });
             });
             var service = {};
             service.getCurrent = function (callback) {
