@@ -60,12 +60,15 @@ angular.module('raspMusicApp').service(
             $stomp.connect(`http://${BASE_URL}/websocket`).then(function (frame) {
                 var onPlay = $stomp.subscribe('/player/play', function (data, headers, res) {
                     play(mapMedia(data));
+                    console.log("play")
                     stateChange({ action: "PLAY" });
                 });
                 var onPause = $stomp.subscribe('/player/pause', function (data, headers, res) {
+                     console.log("pause")
                     stateChange({ action: "PAUSE" });
                 });
                 var onStop = $stomp.subscribe('/player/stop', function (data, headers, res) {
+                     console.log("stop")
                     stateChange({ action: "STOP" });
                 });
                 var onChange = $stomp.subscribe('/player/change', function (data, headers, res) {
