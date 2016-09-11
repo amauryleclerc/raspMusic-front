@@ -52,7 +52,9 @@ angular.module('raspMusicApp').service(
             Player.getCurrent((data) => {
                 musicChange(mapMedia(data));
             });
-            Player.getState(stateChange);
+            Player.getState(s => {
+                stateChange(s.result)
+            });
 
 
             $stomp.connect(`http://${BASE_URL}/websocket`).then(function (frame) {

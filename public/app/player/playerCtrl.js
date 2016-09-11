@@ -40,6 +40,7 @@ angular.module('raspMusicApp').controller('PlayerCtrl', ['Player', 'PlayerServic
 		this.music = music;
 	});
 	PlayerService.onTimeChange((time) => {
+		time.percentage = (time.currentTime / time.length)*100;
 		this.time = time;
 	});
 }]);

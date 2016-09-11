@@ -1,20 +1,22 @@
 <div class="panel panel-default row" ng-show="playerCtrl.music">
-	<div class="col-sm-3 col-md-2">
+	<div class="col-sm-3 col-md-2 text-center">
 		<div>
 			<img class="cover-medium" ng-src="{{playerCtrl.music.cover}}" alt="cover">
 		</div>
-		<button class="btn" ng-click="playerCtrl.previous()">
+		<div>
+			<button class="btn" ng-click="playerCtrl.previous()">
 			<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
 		</button>
-		<button class="btn" ng-click="playerCtrl.play()" ng-if="playerCtrl.state.action !== 'PLAY'">
+			<button class="btn" ng-click="playerCtrl.play()" ng-if="playerCtrl.state.action !== 'PLAY'">
 			<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
 		</button>
-		<button class="btn" ng-click="playerCtrl.pause()" ng-if="playerCtrl.state.action === 'PLAY' ">
+			<button class="btn" ng-click="playerCtrl.pause()" ng-if="playerCtrl.state.action === 'PLAY' ">
 			<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
 		</button>
-		<button class="btn" ng-click="playerCtrl.next()">
+			<button class="btn" ng-click="playerCtrl.next()">
 			<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
 		</button>
+		</div>
 	</div>
 	<div class="col-sm-9 col-md-10">
 		<h4 class="list-group-item-heading">
@@ -24,8 +26,7 @@
 		<p class="list-group-item-text">{{playerCtrl.music.duration}}</p>
 		<div class="progress" style="position: relative;">
 
-			<uib-progressbar  value="playerCtrl.time.percentage" min="0" max="100"
-				 animate="false" >
+			<uib-progressbar value="playerCtrl.time.percentage" min="0" max="100" animate="false">
 			</uib-progressbar>
 
 			<input ng-if="playerCtrl.time.currentTime" min="0" max="100" step="0.1" value="40" type="range" style="position: absolute; top: 1px"
