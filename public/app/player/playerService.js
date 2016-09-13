@@ -4,8 +4,10 @@ angular.module('raspMusicApp').service(
 				[
         'Player',
         '$timeout',
-        '$stomp', 'BASE_URL',
-        function (Player, $timeout, $stomp, BASE_URL) {
+        '$stomp', 'BASE_URL', '$rootScope',
+        function (Player, $timeout, $stomp, BASE_URL, $rootScope) {
+
+            var playlist = [];
 
             var onPlayListeners = [];
             var onStateChangeListeners = [];
@@ -41,11 +43,12 @@ angular.module('raspMusicApp').service(
             var remove = (music) => {
                 $timeout(onRemoveListeners.forEach((listener) => listener(music)));
             }
-            var playlistChange = () => {
-                Player.getPlaylist(function (data) {
+            var playlistChange = (data) => {
+              //  if (data) {
                     let musics = data.map(mapMedia);
-                    $timeout(onPlayListChangeListeners.forEach((listener) => listener(musics)));
-                });
+                    playlist = musics;
+                    onPlayListChangeListeners.forEach((listener) => listener(musics));
+
             }
             Player.getCurrent((data) => {
                 musicChange(mapMedia(data));
@@ -73,7 +76,7 @@ angular.module('raspMusicApp').service(
                     timeChange(data);
                 });
                 var onPlaylistChange = $stomp.subscribe('/player/playlist', function (data, headers, res) {
-                    playlistChange();
+                     $rootScope.$apply(playlistChange(data));
                 });
             });
             var service = {};
@@ -93,7 +96,7 @@ angular.module('raspMusicApp').service(
             }
             service.onPlayListChange = function (callback) {
                 onPlayListChangeListeners.push(callback);
-                playlistChange();
+         
             }
             service.onTimeChange = function (callback) {
                 onTimeChangeListeners.push(callback);
@@ -103,6 +106,11 @@ angular.module('raspMusicApp').service(
             }
             service.onAdd = function (callback) {
                 onAddListeners.push(callback);
+            }
+            service.reloadPlaylist = function(title){
+                Player.getPlaylist(function(data){
+                    playlistChange(data);
+                })
             }
             return service;
         }])
